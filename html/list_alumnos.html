@@ -1,0 +1,27 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#results" ).load( "../php/data_alumnos.php");
+  $("#results").on("click", ".pagination a", function (e){
+    e.preventDefault();
+    var page = $(this).attr("data-page");
+    var x = $('#search').val();
+    $("#results").load("../php/data_alumnos.php",{id:page, val:x});
+  });
+});
+
+$('#results').on('click', '#send', function(e){
+  e.preventDefault();
+  var x = $('#search').val();
+  $.ajax({
+    type: 'post',
+    data: {val: x},
+    dataType: 'html',
+    url: '../php/data_alumnos.php'
+  })
+  .done(function(html){
+    $('#results').html(html)
+  })
+})
+</script>
+
+<div class="container" id="results"></div>

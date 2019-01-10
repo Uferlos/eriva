@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Clientes</title>
+
+</head>
+<body>
+
+<div class="container box">
+<section class="section">
+  <form id="formAddUsr">
+    <table class="table is-bordered">
+      <thead><th colspan="7" style="text-align:center;">Registro de Usuario</th></thead>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Nombre de Usuario</th>
+          <th>Contraseña</th>
+          <th>Confirmar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <p class="control has-icon has-icon-right">
+              <input id="nom" type="text" name="nom" class="input text-only" size="10" autocomplete="off" required>
+              <span class="icon is-small">
+                <i class="material-icons"></i>
+              </span>
+            </p>
+          </td>
+
+          <td>
+            <p class="control has-icon has-icon-right">
+              <input id="ape" type="text" name="ape" class="input text-only" size="10" autocomplete="off" required>
+              <span class="icon is-small">
+                <i class="material-icons"></i>
+              </span>
+          </td>
+
+          <td>
+            <p class="control has-icon has-icon-right">
+              <input type="text" name="usu" class="input" size="10" autocomplete="off" required>
+              <span class="icon is-small">
+                <i class="material-icons"></i>
+              </span>
+            </p>
+          </td>
+
+          <td>
+            <p class="control has-icon has-icon-right">
+              <input type="password" id="pass" name="pass" class="input" size="10" autocomplete="off" required>
+              <span class="icon is-small">
+                <i class="material-icons"></i>
+              </span>
+            </p>
+          </td>
+
+          <td>
+            <p class="control has-icon has-icon-right">
+              <input type="password" id="rpass" class="input" size="10" autocomplete="off" required>
+              <span class="icon is-small">
+                <i class="material-icons"></i>
+              </span>
+            </p>
+          </td>
+          
+          <input type="hidden" name="action" value="add">
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td colspan="7" class="has-text-centered">
+            <button type="submit" id="send" class="button is-info">Procesar</button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+</section>
+</div>
+
+<script type="text/javascript">
+$(document).on('click', '#send', function(){
+  var p1 = $('#pass').val()
+  var p2 = $('#rpass').val()
+  if(p1.length < 8){
+    alert('La contraseña debe tener minimo 8 caracteres')
+    $('#rpass').val('')
+    $('#rpass').removeClass('is-success')
+    $('#rpass').addClass('is-danger')
+    $('#rpass').next().find('i').html('')
+    $('#rpass').next().find('i').html('report')
+    $('#pass').val('').focus()
+    return false;
+  }
+  if(p1 != p2){
+    alert('La contraseña no coincide')
+    $('#rpass').val('')
+    $('#rpass').removeClass('is-success')
+    $('#rpass').addClass('is-danger')
+    $('#rpass').next().find('i').html('')
+    $('#rpass').next().find('i').html('report')
+    $('#pass').val('').focus()
+    return false;
+  }
+})
+$('.text-only').keydown(function(v){
+  if ((v.keyCode > 47 && v.keyCode < 58)){
+    v.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
